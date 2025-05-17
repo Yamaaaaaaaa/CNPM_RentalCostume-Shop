@@ -185,7 +185,6 @@ public class CostumeDAO {
 
     public Map<Costume, Integer> getPopularCostumeInRange(Date startDate, Date endDate) {
         Map<Costume, Integer> result = new LinkedHashMap<>(); // Sử dụng LinkedHashMap để duy trì thứ tự
-
         String sql = "SELECT c.*, tc.name as type_name, sc.name as style_name, COUNT(ic.Costumeid) as rent_count " +
                 "FROM Costume c " +
                 "LEFT JOIN TypeCostume tc ON c.TypeCostumeid = tc.id " +
@@ -196,13 +195,9 @@ public class CostumeDAO {
                 "AND i.type_invoice = 'rent' " +
                 "GROUP BY c.id " +
                 "ORDER BY rent_count DESC";
-
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-
+        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setDate(1, new java.sql.Date(startDate.getTime()));
             ps.setDate(2, new java.sql.Date(endDate.getTime()));
-
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Costume costume = new Costume(
@@ -217,13 +212,10 @@ public class CostumeDAO {
                     );
                     costume.setStyleCostumeName(rs.getString("style_name"));
                     costume.setTypeCostumeName(rs.getString("type_name"));
-
                     int rentCount = rs.getInt("rent_count");
-
                     result.put(costume, rentCount);
                 }
             }
-
             return result;
         } catch (SQLException e) {
             System.err.println("Lỗi khi lấy danh sách trang phục phổ biến: " + e.getMessage());

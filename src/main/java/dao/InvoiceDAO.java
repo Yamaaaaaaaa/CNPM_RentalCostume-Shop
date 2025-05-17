@@ -166,11 +166,9 @@ public class InvoiceDAO {
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-
             ps.setInt(1, costumeId);
             ps.setDate(2, new java.sql.Date(startDate.getTime()));
             ps.setDate(3, new java.sql.Date(endDate.getTime()));
-
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Invoice invoice = new Invoice(
@@ -189,7 +187,6 @@ public class InvoiceDAO {
                     result.add(invoice);
                 }
             }
-
             return result;
         } catch (SQLException e) {
             System.err.println("Lỗi khi lấy danh sách hóa đơn thuê trang phục: " + e.getMessage());

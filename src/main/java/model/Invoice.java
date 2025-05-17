@@ -16,9 +16,6 @@ public class Invoice {
     private String managerName;
     private String customerName;
 
-    public Invoice() {
-    }
-
     public Invoice(int id, float deposit, float totalAmount, Date rentalDate, Date returnDate, int managerId, String typeInvoice, int customerId) {
         this.id = id;
         this.deposit = deposit;

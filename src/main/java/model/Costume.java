@@ -9,13 +9,9 @@ public class Costume {
     private float originalCost;
     private int styleCostumeId;
     private int typeCostumeId;
-
     // Để hiển thị trong UI
     private String styleCostumeName;
     private String typeCostumeName;
-
-    public Costume() {
-    }
 
     public Costume(int id, String name, String description, int stockQuantity, float rentalPrice, float originalCost, int styleCostumeId, int typeCostumeId) {
         this.id = id;

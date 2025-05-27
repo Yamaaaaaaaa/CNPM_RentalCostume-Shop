@@ -12,6 +12,7 @@ public class Costume {
     // Để hiển thị trong UI
     private String styleCostumeName;
     private String typeCostumeName;
+    private float totalRented;
 
     public Costume(int id, String name, String description, int stockQuantity, float rentalPrice, float originalCost, int styleCostumeId, int typeCostumeId) {
         this.id = id;

@@ -130,7 +130,7 @@ public class StatisticsUI extends JFrame {
             setLayout(new BorderLayout(10, 10));
             setBorder(new TitledBorder("Danh sách trang phục mượn nhiều"));
             // Tạo model cho bảng trang phục
-            String[] columnNames = {"ID", "Tên trang phục", "Loại", "Kiểu", "Giá thuê", "Số lần được thuê"};
+            String[] columnNames = {"ID", "Tên trang phục", "Loại", "Kiểu", "Giá thuê", "Số lần được thuê", "Tổng tiền thu được"};
             costumeTableModel = new DefaultTableModel(columnNames, 0) {
                 @Override
                 public boolean isCellEditable(int row, int column) {
@@ -173,7 +173,8 @@ public class StatisticsUI extends JFrame {
                         costume.getTypeCostumeName(),
                         costume.getStyleCostumeName(),
                         costume.getRentalPrice(),
-                        rentCount
+                        rentCount,
+                        costume.getRentalPrice() * rentCount
                 };
 
                 costumeTableModel.addRow(rowData);
